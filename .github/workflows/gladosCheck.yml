@@ -18,7 +18,6 @@ jobs:
       
     permissions:
       contents: read
-      actions: write
 
     strategy:
       matrix:
@@ -54,14 +53,11 @@ jobs:
         GLADOS_EXCHANGE_PLAN: ${{ secrets.GLADOS_EXCHANGE_PLAN }}
         GLADOS_VERBOSE: ${{ secrets.GLADOS_VERBOSE }}
 
-    - name: Keep alive
-      uses: liskin/gh-workflow-keepalive@v1 
-        
-    - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@v2
-      with:
-        token: ${{ github.token }}
-        repository: ${{ github.repository }}
-        retain_days: 7
-        keep_minimum_runs: 7
-        delete_run_by_conclusion_pattern: success
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+    - name: Keep workflow enabled
+      uses: liskin/gh-workflow-keepalive@v1
