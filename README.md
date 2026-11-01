@@ -33,14 +33,14 @@
 
 #### 3.1 GLADOS_COOKIES（必填）
 
-对应 GLaDOS 账号 Cookie 中的有效部分，获取方式：
+对应 GLaDOS 账号 Cookie 中的有效部分，获取方式（你当前使用的是 `glados.network`）：
 
 - 在 GLaDOS 签到页面按 `F12`，切换到 `Network` 页面下，刷新
 - 点击第一个请求，在 `Request Headers` 下找到 `Cookie`，右键复制其值即可
 
   > 参考格式：`koa:sess=eyJ1c2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxAwMH0=; koa:sess.sig=xJkOxxxxxxxxxxxxxxxtnM;`
 
-- 多账号请在 `COOKIES` 中添加多个 cookies，中间使用 `&` 连接即可（例如：`c1&c2&c3`）
+- 多账号请在 `COOKIES` 中添加多个 cookies，中间使用 `&` 连接即可（例如：`c1&c2&c3`）。脚本会依次尝试当前主站 `glados.network`、旧站 `glados.cloud` 和迁移站 `railgun.info`。
 
 ![图片加载失败](imgs/2.png)
 ![图片加载失败](imgs/3.png)
@@ -74,6 +74,7 @@
 - **2026-04**: 优化代码逻辑与日志输出，支持[新版域名](https://railgun.info)，在 `GLADOS_COOKIES` 中添加新版域名下的 cookies 即可使用。
 - **2026-09**: 设备平台自适应重试（无需手动配置 UA 即可自动恢复签到）；网络层自动重试与退避，降低 CI 网络抖动导致的误报失败；日志时间统一为北京时间，定时任务调整为北京时间每天 2 次并避开整点高峰；默认关闭自动兑换，需显式配置后才启用。
 - **2026-10**: 日志级别短标签 `[I]/[W]/[E]` ；推送兼容 Server酱（策略模式多后端「都发」），新增 `requirements.txt` 。
+- **2026-11**: 加入当前主站 `glados.network`，保留 `glados.cloud` 和 `railgun.info` 兼容检查。
 
 ## 问题排查与定位
 
