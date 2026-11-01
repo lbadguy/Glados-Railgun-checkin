@@ -109,8 +109,8 @@ class Config:
     """默认是否输出详细响应"""
     DEFAULT_VERBOSE = False
 
-    """默认域名（当前主站与迁移站）"""
-    DOMAINS = ["glados.network", "glados.cloud", "railgun.info"]
+    """此仓库配置的 Cookie 属于当前主站"""
+    DOMAINS = ["glados.network"]
 
     """兑换计划列表"""
     EXCHANGE_PLANS = {
